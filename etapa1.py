@@ -55,9 +55,11 @@ def comparar_intento(intento,palabra,resultados,letra,aciertos,errores):
     if (intento == palabra):
         resultados[letra] = "a"
         aciertos += 1
+        print("¡Correcto!")
     else:
         resultados[letra] = "e"
         errores += 1
+        print(f"Incorrecto :( La palabra correcta es: {palabra}")
     return resultados,aciertos,errores
 
 """ 
