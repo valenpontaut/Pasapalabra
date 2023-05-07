@@ -2,27 +2,36 @@ from datos import obtener_lista_definiciones
 import random
 
 def crear_lista_letras(letras):
+    '''
+    Pre: Recibe una lista cargada previamente con todas las letras del abecedario.
+    Post: Genera la lista de 10 letras aleatorias
+    '''
     letras_seleccionadas = []
-    for i in letras:
-        letras_seleccionadas = random.sample(letras, 10)
+    letras_seleccionadas = random.sample(letras, 10)
 
     letras_seleccionadas.sort()
+
     return letras_seleccionadas
 
 
 def seleccionar_palabra(diccionario_palabras, letras_participantes):
     '''
-    Recibe la lista y el diccionario cargados previamente y devolverá palabras aleatorias que empiecen con cada letra de la lista de letras al azar
+    Pre: Recibe la lista y el diccionario cargados previamente
+    Post: Devolverá palabras aleatorias con su definición que empiecen con cada letra de la lista de letras al azar
     '''
 
     palabras_seleccionadas = []
     lista_letras = letras_participantes.copy()
     claves = sorted(diccionario_palabras.keys())
     count = 0
+
     while (len(lista_letras) > 0):
+
         count += 1
         indice = random.randrange(0, len(claves),1)
+
         if claves[indice][0].lower() in lista_letras:
+            
             palabra = [claves[indice], diccionario_palabras[claves[indice]]]
             lista_letras.remove(claves[indice][0].lower())
             palabras_seleccionadas.append(palabra)
