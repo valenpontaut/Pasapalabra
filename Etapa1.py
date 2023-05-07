@@ -86,6 +86,7 @@ def desarrollar_juego(letras,definiciones):
         resultado_final = agregar_resultado_final(resultado_final,letra_turno_actual,intento,palabra,resultados)
     imprimir_rosco(letras,resultados)
     print(f"\n\n{resultado_final}")
+    print(f"Puntaje final: {aciertos}\n")
 
 """ 
 Función: iniciar_juego
