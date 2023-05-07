@@ -13,12 +13,45 @@ def validar_confirmacion(confirmacion):
 
 """ 
 Función: validar_intento
-Parámetros: intento,palabra,resultados,letra,aciertos,errores
+Parámetros: intento,largo_palabra
 Precondiciones: ??
-Postcondiciones: Valida que el intento ingresado por el usuario coincida con la palabra a adivinar, en el caso favorable guarda en el diccionario 'resultados' el acierto como "a" y el error como "e"
+Postcondiciones: Valida que el intento ingresado sea compuesto unicamente por letras, no están permitidos los números, espacios ni ningún carácter especial, y que sea de la longitud correcta para el turno
 @author: Valentina Llanos Pontaut
 """
-def validar_intento(intento,palabra,resultados,letra,aciertos,errores):
+def validar_intento(intento,largo_palabra):
+    es_valido = True
+    error = ""
+    i = 0
+    while es_valido == True and i < largo_palabra:
+        if len(intento) == largo_palabra:
+            for caracter in intento:
+                if caracter.isspace():
+                    error = "\nError: El intento iongresado no puede contener espacios"
+                    es_valido = False
+                elif caracter.isnumeric():
+                    error = "\nError: El intento ingresado no puede contener numeros"
+                    es_valido = False
+                elif not caracter.isalpha():
+                    error = "\nError: El intento ingresado no puede contener caracteres especiales"
+                    es_valido = False
+                i += 1
+        else:
+            error = f"\nError: El intento ingresado debe tener una longitud de {largo_palabra} letras"
+            es_valido = False
+    print(error)
+    if es_valido == False:
+        intento = input("Por favor ingrese nuevamente la palabra: ")
+        intento = validar_intento(intento,largo_palabra)
+    return intento
+
+""" 
+Función: comparar_intento
+Parámetros: intento,palabra,resultados,letra,aciertos,errores
+Precondiciones: ??
+Postcondiciones: Compara que el intento ingresado por el usuario coincida con la palabra a adivinar, en el caso favorable guarda en el diccionario 'resultados' el acierto como "a" y el error como "e"
+@author: Valentina Llanos Pontaut
+"""
+def comparar_intento(intento,palabra,resultados,letra,aciertos,errores):   
     if (intento == palabra):
         resultados[letra] = "a"
         aciertos += 1
@@ -82,7 +115,8 @@ def desarrollar_juego(letras,definiciones):
         print(f"Turno letra {letra_turno_actual.upper()} - Palabra de {len(palabra)} letras")
         print(f"Definición: {definicion}")
         intento = input("Ingrese palabra: ")
-        resultados,aciertos,errores = validar_intento(intento,palabra,resultados,letra_turno_actual,aciertos,errores)
+        intento = validar_intento(intento,len(palabra))
+        resultados,aciertos,errores = comparar_intento(intento,palabra,resultados,letra_turno_actual,aciertos,errores)
         resultado_final = agregar_resultado_final(resultado_final,letra_turno_actual,intento,palabra,resultados)
     imprimir_rosco(letras,resultados)
     print(f"\n\n{resultado_final}")
