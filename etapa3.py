@@ -6,35 +6,49 @@ def crear_lista_letras(letras):
     Pre: Recibe una lista cargada previamente con todas las letras del abecedario.
     Post: Genera la lista de 10 letras aleatorias
     '''
-    letras_seleccionadas = []
     letras_seleccionadas = random.sample(letras, 10)
-
     letras_seleccionadas.sort()
-
     return letras_seleccionadas
 
+def filtrar_palabras(palabras, cant_por_letra, letras_seleccionadas):
+    """
+    Parametros:
+        palabras es una lista de palabras que deben estar ordenadas alfabeticamente
+        cant_por_letra es una lista de listas en la que el primer valor es la letra y el segundo la cantidad dwe palabras con esa letra en el diccionario
+        letras_seleccionadas es una lista de las letras seleccionadas sobre las cuales se deben filtrar las palabras
+    """
+    CANT = 1
+    lista_filtrada = []
+    letras_filtradas = []
+    index = 0
+    for cant in cant_por_letra:
+        if palabras[index][0].lower() in letras_seleccionadas:
+            lista_filtrada.extend(palabras[index:(index+cant[CANT])])
+            letras_filtradas.append(cant)
+        index += cant[CANT]
+    return lista_filtrada, letras_filtradas
 
-def seleccionar_palabra(diccionario_palabras, letras_participantes):
+def seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra):
     '''
     Pre: Recibe la lista y el diccionario cargados previamente
     Post: Devolverá palabras aleatorias con su definición que empiecen con cada letra de la lista de letras al azar
     '''
 
     palabras_seleccionadas = []
-    lista_letras = letras_participantes.copy()
+
     claves = sorted(diccionario_palabras.keys())
+    claves_filtradas, letras_filtradas = filtrar_palabras(claves, cant_por_letra, letras_participantes)
+    CANT = 1
     count = 0
 
-    while (len(lista_letras) > 0):
-
+    indice = 0
+    for cant in letras_filtradas:
+        rand = random.randrange(indice, indice+cant[CANT])
+        palabra = [claves_filtradas[rand], diccionario_palabras[claves_filtradas[rand]]]
+        palabras_seleccionadas.append(palabra)
+        indice += cant[CANT]
         count += 1
-        indice = random.randrange(0, len(claves),1)
 
-        if claves[indice][0].lower() in lista_letras:
-            
-            palabra = [claves[indice], diccionario_palabras[claves[indice]]]
-            lista_letras.remove(claves[indice][0].lower())
-            palabras_seleccionadas.append(palabra)
 
     print(count)
 
@@ -45,7 +59,9 @@ def seleccionar_palabra(diccionario_palabras, letras_participantes):
 
 
 def main():
-
+    lista_letras = ['a', 'b', 'c', 'd', 'e', 'f' ,'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    
+    # Todas estas variables fueron declaradas para probar la funcion - Luego borrar
     prueba_definiciones = {
     "A1": "Definicion A1",
     "A2": "Definicion A2",
@@ -156,15 +172,13 @@ def main():
     "Z3": "Definicion Z3",
     "Z4": "Definicion Z4",
 }
-
     dicionario = {'ananá' : 'Fruta amarilla y ácida', 'barrer' : 'Acción de limpiar con una escoba', 'café' : 'Bebida con cafeína', 'dedo' : 'Parte de la mano', 'elfo' : 'Ser mítico con orejas puntiagudas', 'foco' : 'Objeto que ilumina una habitación'}
     lista_letras_1 = ['a', 'b', 'c', 'd', 'e', 'f']
-
-    lista_letras = ['a', 'b', 'c', 'd', 'e', 'f' ,'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    prueba_cantidades = [[letra, 4] for letra in lista_letras]
 
     letras_seleccionadas = crear_lista_letras(lista_letras)
 
-    palabras_definiciones = seleccionar_palabra(prueba_definiciones, letras_seleccionadas)
+    palabras_definiciones = seleccionar_palabra(prueba_definiciones, letras_seleccionadas, prueba_cantidades)
 
     print(letras_seleccionadas)
     print(palabras_definiciones)
