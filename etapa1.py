@@ -142,7 +142,7 @@ def iniciar_juego():
 """ 
 Función: main
 Parámetros: - 
-Precondiciones: ??
+Precondiciones: ???
 Postcondiciones: Es la funcion principal, por acá comienza a correr el código. Inicia el juego
 @author: Valentina Llanos Pontaut
 """
