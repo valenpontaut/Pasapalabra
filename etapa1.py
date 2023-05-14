@@ -156,9 +156,6 @@ def iniciar_juego(letras,definiciones):
     imprimir_rosco(letras,resultados)
     print(f"\n\n{resultado_final}")
     print(f"Puntaje final: {aciertos}\n")
-    confirmacion = input("¿Desea jugar nuevamente? (si/no): ")
-    confirmacion = validar_confirmacion(confirmacion.lower())
-    return confirmacion
 
 def main():
     """ 
