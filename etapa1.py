@@ -131,9 +131,7 @@ Precondiciones: ??
 Postcondiciones: desarrolla todo el juego y devuelve si el usuario desea o no seguir participando 
 @author: Valentina Llanos Pontaut
 """
-def iniciar_juego():
-    letras_participantes = ["a","c","d","g","i","l","m","p","s","v"] #Traer letras de Etapa3
-    definiciones = [["arbol","def arbol"],["casa","def casa"],["dado","def dado"],["gato","def gato"],["isla","def isla"],["loco","def loco"],["manteca","def manteca"],["pescado","def pescado"],["sapo","def sapo"],["vaso","def vaso"]] #Traer definiciones de Etapa3
+def iniciar_juego(letras_participantes,definiciones):
     desarrollar_juego(letras_participantes,definiciones)
     confirmacion = input("¿Desea jugar nuevamente? (si/no): ")
     confirmacion = validar_confirmacion(confirmacion)
@@ -148,11 +146,12 @@ Postcondiciones: Es la funcion principal, por acá comienza a correr el código.
 """
 def main():
     print("¡Bienvenido al juego Pasapalabra!\n\nA continuación le mostraremos una serie de letras participantes de las cuales deberá intentar adivinar a qué palabra se está refiriendo leyendo su definición.\nDebajo de las letras podrá observar cuáles va acertando \"a\" o cuales va errando \"e\".\n\n¡Mucha suerte!")
-    confirmacion = iniciar_juego()
+    letras_participantes = ["a","c","d","g","i","l","m","p","s","v"] #Traer letras de Etapa3
+    definiciones = [["arbol","def arbol"],["casa","def casa"],["dado","def dado"],["gato","def gato"],["isla","def isla"],["loco","def loco"],["manteca","def manteca"],["pescado","def pescado"],["sapo","def sapo"],["vaso","def vaso"]] #Traer definiciones de Etapa3
+    confirmacion = iniciar_juego(letras_participantes,definiciones)
     while confirmacion == "si":
-        confirmacion = iniciar_juego()
+        confirmacion = iniciar_juego(letras_participantes,definiciones)
     print("\n¡Gracias por participar!")
 
-main()
 
 
