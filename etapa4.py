@@ -13,6 +13,8 @@ def main():
     definiciones = seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra)
     confirmacion = iniciar_juego(letras_participantes,definiciones)
     while confirmacion == "si":
+        letras_participantes = crear_lista_letras(letras)
+        definiciones = seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra)
         confirmacion = iniciar_juego(letras_participantes,definiciones)
     print("\n¡Gracias por participar!")
 
