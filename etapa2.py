@@ -27,31 +27,33 @@ def palabra_sin_tilde(letra):
 
     return letra
 
-def mostrar_total_de_palabras(diccionario_de_palabras):
+def total_de_palabras(diccionario_de_palabras):
     """
     parametros = diccionario_de_palabras
-    Postcondiciones = muestra en pantalla la cantidad de palabras que hay por letra y la cantidad total de palabras que hay en el diccionario_palabras
+    Postcondiciones = Retorna un diccionario que tiene como clave todas las letras del abecedario y como valor la cantidad de palabras que hay en cada una.
     autores = Valle Valentin y Francisco Albinati 
     """
     PRIMER_LETRA = 0
     diccionario_cantidad_por_letra = {}
-    cantidad_palabras = len(diccionario_de_palabras)
     for palabra in diccionario_de_palabras:
         primer_letra_palabra = palabra_sin_tilde(palabra[PRIMER_LETRA])
         if primer_letra_palabra not in diccionario_cantidad_por_letra:
             diccionario_cantidad_por_letra[primer_letra_palabra] = 1
         else:
             diccionario_cantidad_por_letra[primer_letra_palabra] += 1
+    return diccionario_cantidad_por_letra
 
-    for letra in diccionario_cantidad_por_letra:
-        print(f"la letra {letra} tiene {diccionario_cantidad_por_letra[letra]} letras")
-    print(cantidad_palabras)
-
-         
-
+def mostrar_total_de_palabras(diccionario_letras):
+    """
+    Parametros = Diccionario_letras
+    postcondiciones = muestra en pantalla la cantidad de palabras que hay por letra y la cantidad total de palabras que hay en el diccionario_palabras
+    aurores = Valle Valentin y Francisco Albinati
+    """
+    cantidad_palabras = len(diccionario_letras)
+    for letra in diccionario_letras:
+        print(f"la letra {letra} tiene {diccionario_letras[letra]} palabras")
+    print(f"la cantidad total de palabras es: {cantidad_palabras}")
     
-
-
 
 def etapa_2():   
     mostrar_total_de_palabras(crear_diccionario())
