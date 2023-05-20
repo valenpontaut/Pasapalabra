@@ -122,6 +122,20 @@ def agregar_resultado_final(resultado_final,letra,intento,palabra,resultados):
         resultado_final += f"error - Palabra Correcta: {palabra}\n"
     return resultado_final
 
+def imprimir_puntuacion(aciertos,errores,PUNTOS_POR_ACIERTO=10,PUNTOS_POR_ERROR=-3):
+    """ 
+    Función: imprimir_puntuacion
+    Parámetros: 
+        aciertos: es un integer que representa la cantidad de aciertos que el jugador realizó durante todo el juego
+        errores: es un integer que representa la cantidad de errores que el jugador realizó durante todo el juego
+        PUNTOS_POR_ACIERTO: es una constante de tipo integer que representa la cantidad de puntos que se reciben por acierto (etapa 5)
+        PUNTOS_POR_ERROR: es una constante de tipo integer que representa la cantidad de puntos que se restan por error (etapa 5)
+    Salidas: -
+    Precondiciones: Se debe de haber finalizado de jugar todo un rosco
+    Postcondiciones: Imprime la puntuación final obtenida por el jugador luego de haber finalizado el rosco, con los puntos correspondientes por acierto y por error
+    """
+    print(f"Puntaje final: {(aciertos * PUNTOS_POR_ACIERTO) + (errores * PUNTOS_POR_ERROR)}")
+
 def iniciar_juego(letras,definiciones):
     """ 
     Función: iniciar_juego
@@ -154,8 +168,15 @@ def iniciar_juego(letras,definiciones):
         resultados,aciertos,errores = comparar_intento(intento,palabra,resultados,letra_turno_actual,aciertos,errores)
         resultado_final = agregar_resultado_final(resultado_final,letra_turno_actual,intento,palabra,resultados)
     imprimir_rosco(letras,resultados)
-    print(f"\n\n{resultado_final}")
-    print(f"Puntaje final: {aciertos}\n")
+    print(f"\n\nAciertos: {aciertos}\nErrores: {errores}")
+    print(f"\n{resultado_final}")
+    # Etapa 1 ->
+    # print(f"Puntaje final: {aciertos}\n")
+    # Etapa 5 ->
+    imprimir_puntuacion(aciertos,errores)
+    confirmacion = input("\n¿Desea jugar nuevamente? (si/no): ")
+    confirmacion = validar_confirmacion(confirmacion)
+    return confirmacion
 
 def main():
     """ 
@@ -166,14 +187,14 @@ def main():
     Postcondiciones: Es la funcion principal, por acá comienza a correr el código. Inicia el juego
     Autor: Valentina Llanos Pontaut
     """
-    print("¡Bienvenido al juego Pasapalabra!\n\nA continuación le mostraremos una serie de letras participantes de las cuales deberá intentar adivinar a qué palabra se está refiriendo leyendo su definición.\nDebajo de las letras podrá observar cuáles va acertando \"a\" o cuales va errando \"e\".\n\n¡Mucha suerte!")
-    letras_participantes = ["a","c","d","g","i","l","m","p","s","v"] # Se crea esta lista en la etapa 2 de manera aleatoria
-    definiciones = [["arbol","def arbol"],["casa","def casa"],["dado","def dado"],["gato","def gato"],["isla","def isla"],["loco","def loco"],["manteca","def manteca"],["pescado","def pescado"],["sapo","def sapo"],["vaso","def vaso"]] # Se crea esta lista en la etapa 2 de manera aleatoria
+    print("¡Bienvenido al juego Pasapalabra!\n\nA continuación le mostraremos una serie de letras participantes de las cuales deberá intentar adivinar a qué palabra se está refiriendo leyendo su definición.\nDebajo de las letras podrá observar cuáles va acertando \"a\" o cuales va errando \"e\".\nRecuerde que por cada acierto obtiene 10 puntos y por cada error se le restan 3 puntos.\n\n¡Mucha suerte!")
+    # Las listas "letras_participantes" y "definiciones" se crean en la etapa 3 de manera aleatoria
+    letras_participantes = ["a","c","d","g","i","l","m","p","s","v"] 
+    definiciones = [["arbol","def arbol"],["casa","def casa"],["dado","def dado"],["gato","def gato"],["isla","def isla"],["loco","def loco"],["manteca","def manteca"],["pescado","def pescado"],["sapo","def sapo"],["vaso","def vaso"]]
     confirmacion = iniciar_juego(letras_participantes,definiciones)
     while confirmacion == "si":
-        letras_participantes = ["b","d","e","h","j","m","n","q","t","x"] # Se crea esta lista en la etapa 2 de manera aleatoria
-        definiciones = [["barco","def barco"],["dinero","def dinero"],["estado","def estado"],["helado","def helado"],["jaula","def jaula"],["mono","def mono"],["nacer","def nacer"],["queso","def queso"],["tomate","def tomate"],["xilofon","def xilofon"]] # Se crea esta lista en la etapa 2 de manera aleatoria
+        # Las listas "letras_participantes" y "definiciones" se crean en la etapa 3 de manera aleatoria
+        letras_participantes = ["b","d","e","h","j","m","n","q","t","x"]
+        definiciones = [["barco","def barco"],["dinero","def dinero"],["estado","def estado"],["helado","def helado"],["jaula","def jaula"],["mono","def mono"],["nacer","def nacer"],["queso","def queso"],["tomate","def tomate"],["xilofon","def xilofon"]]
         confirmacion = iniciar_juego(letras_participantes,definiciones)
     print("\n¡Gracias por participar!")
-
-# Para observar los resultados de esta etapa llamar a la función main(). No se agregó en este código debido que afecta el funcionamiento de la etapa integradora
