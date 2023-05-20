@@ -49,7 +49,7 @@ def validar_intento(intento,largo_palabra):
     if es_valido == False:
         intento = input("Por favor ingrese nuevamente la palabra: ")
         intento = validar_intento(intento,largo_palabra)
-    return intento
+    return intento.lower()
 
 def comparar_intento(intento,palabra,resultados,letra,aciertos,errores):   
     """ 
