@@ -1,4 +1,4 @@
-from etapa1 import iniciar_juego 
+from etapa1_etapa5 import iniciar_juego 
 from etapa2 import crear_diccionario, mostrar_total_de_palabras
 from etapa3 import crear_lista_letras, seleccionar_palabra
 
