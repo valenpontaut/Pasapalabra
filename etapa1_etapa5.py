@@ -122,26 +122,30 @@ def agregar_resultado_final(resultado_final,letra,intento,palabra,resultados):
         resultado_final += f"error - Palabra Correcta: {palabra}\n"
     return resultado_final
 
-def imprimir_puntuacion(aciertos,errores,PUNTOS_POR_ACIERTO=10,PUNTOS_POR_ERROR=-3):
+def imprimir_puntuacion(aciertos,errores,puntaje_anterior=0,PUNTOS_POR_ACIERTO=10,PUNTOS_POR_ERROR=-3):
     """ 
     Función: imprimir_puntuacion
     Parámetros: 
         aciertos: es un integer que representa la cantidad de aciertos que el jugador realizó durante todo el juego
         errores: es un integer que representa la cantidad de errores que el jugador realizó durante todo el juego
+        puntaje_anterior: es un integer que representa el puntaje acumulado de juegos anteriores. Si es la primera vez que se juega, éste vale cero.
         PUNTOS_POR_ACIERTO: es una constante de tipo integer que representa la cantidad de puntos que se reciben por acierto (etapa 5)
         PUNTOS_POR_ERROR: es una constante de tipo integer que representa la cantidad de puntos que se restan por error (etapa 5)
     Salidas: -
     Precondiciones: Se debe de haber finalizado de jugar todo un rosco
     Postcondiciones: Imprime la puntuación final obtenida por el jugador luego de haber finalizado el rosco, con los puntos correspondientes por acierto y por error
     """
-    print(f"Puntaje final: {(aciertos * PUNTOS_POR_ACIERTO) + (errores * PUNTOS_POR_ERROR)}")
+    puntaje_final = puntaje_anterior + (aciertos * PUNTOS_POR_ACIERTO) + (errores * PUNTOS_POR_ERROR)
+    print(f"Puntaje final: {puntaje_final}")
+    return puntaje_final
 
-def iniciar_juego(letras,definiciones):
+def iniciar_juego(letras,definiciones,puntaje_anterior=0):
     """ 
     Función: iniciar_juego
     Parámetros: 
         letras: es una lista con las 10 letras participantes del rosco ordenadas, elegidas al azar
         definiciones: es una lista de listas en donde cada sublista contiene en la posición 0 una palabra y en la posición 1 su definición. Las palabras seleccionadas son elegidas a partir de las letras seleccionadas.
+        puntaje_anterior: es un integer que representa el puntaje acumulado de juegos anteriores. Si es la primera vez que se juega, éste vale cero.
     Salidas: 
         confirmacion: "si" si el jugador desea jugar nuevamente, "no" si el jugador desea no jugar más
     Precondiciones: Se debe haber iniciado un juego nuevo
@@ -173,10 +177,10 @@ def iniciar_juego(letras,definiciones):
     # Etapa 1 ->
     # print(f"Puntaje final: {aciertos}\n")
     # Etapa 5 ->
-    imprimir_puntuacion(aciertos,errores)
+    puntaje_final = imprimir_puntuacion(aciertos,errores,puntaje_anterior)
     confirmacion = input("\n¿Desea jugar nuevamente? (si/no): ")
     confirmacion = validar_confirmacion(confirmacion)
-    return confirmacion
+    return confirmacion, puntaje_final
 
 def main():
     """ 
@@ -191,10 +195,10 @@ def main():
     # Las listas "letras_participantes" y "definiciones" se crean en la etapa 3 de manera aleatoria
     letras_participantes = ["a","c","d","g","i","l","m","p","s","v"] 
     definiciones = [["arbol","def arbol"],["casa","def casa"],["dado","def dado"],["gato","def gato"],["isla","def isla"],["loco","def loco"],["manteca","def manteca"],["pescado","def pescado"],["sapo","def sapo"],["vaso","def vaso"]]
-    confirmacion = iniciar_juego(letras_participantes,definiciones)
+    confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones)
     while confirmacion == "si":
         # Las listas "letras_participantes" y "definiciones" se crean en la etapa 3 de manera aleatoria
         letras_participantes = ["b","d","e","h","j","m","n","q","t","x"]
         definiciones = [["barco","def barco"],["dinero","def dinero"],["estado","def estado"],["helado","def helado"],["jaula","def jaula"],["mono","def mono"],["nacer","def nacer"],["queso","def queso"],["tomate","def tomate"],["xilofon","def xilofon"]]
-        confirmacion = iniciar_juego(letras_participantes,definiciones)
+        confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones,puntaje_final)
     print("\n¡Gracias por participar!")
