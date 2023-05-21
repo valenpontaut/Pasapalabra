@@ -16,16 +16,17 @@ def main():
     # 1. Generación del diccionario de palabras
     diccionario_palabras = crear_diccionario()
     cant_por_letra = total_de_palabras(diccionario_palabras)
+    cant_por_letra = sorted(cant_por_letra.items(), key = lambda x:x[0])
     # 2. Selección de las 10 letras participantes
     letras_participantes = crear_lista_letras(letras)
     # 3.  Selección al azar de la lista de palabras a adivinar por el jugador
     definiciones = seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra)
     # 4. Armado del tablero y comienzo de la partida
-    confirmacion = iniciar_juego(letras_participantes,definiciones)
+    confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones)
     while confirmacion == "si":
         letras_participantes = crear_lista_letras(letras)
         definiciones = seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra)
-        confirmacion = iniciar_juego(letras_participantes,definiciones)
+        confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones,puntaje_final)
     print("\n¡Gracias por participar!")
 
 main()
