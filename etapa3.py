@@ -80,4 +80,5 @@ def etapa3_test():
             print(palabra[0] + ",", end="")
         print("")
 
-etapa3_test()
+# Descomentar esta ejecucion para ver el codigo especifico pedido en la consigna de la etapa 3
+# etapa3_test()
