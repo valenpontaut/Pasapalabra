@@ -49,6 +49,7 @@ def total_de_palabras(diccionario_de_palabras):
             diccionario_cantidad_por_letra[primer_letra_palabra] += 1
     return diccionario_cantidad_por_letra
 
+
 def mostrar_total_de_palabras(diccionario_letras):
     """
     Parametros: 
@@ -62,6 +63,7 @@ def mostrar_total_de_palabras(diccionario_letras):
         print(f"la letra {letra} tiene {diccionario_letras[letra]} palabras")
         cantidad_palabras += diccionario_letras[letra]
     print(f"la cantidad total de palabras es: {cantidad_palabras}")
+
     
 def main():
     diccionario = crear_diccionario()
