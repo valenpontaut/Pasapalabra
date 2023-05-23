@@ -29,22 +29,21 @@ def validar_intento(intento,largo_palabra):
     es_valido = True
     error = ""
     i = 0
+    if len(intento) != largo_palabra:
+        error = f"\nError: El intento ingresado debe tener una longitud de {largo_palabra} letras"
+        es_valido = False
     while es_valido == True and i < largo_palabra:
-        if len(intento) == largo_palabra:
-            for caracter in intento:
-                if caracter.isspace():
-                    error = "\nError: El intento iongresado no puede contener espacios"
-                    es_valido = False
-                elif caracter.isnumeric():
-                    error = "\nError: El intento ingresado no puede contener numeros"
-                    es_valido = False
-                elif not caracter.isalpha():
-                    error = "\nError: El intento ingresado no puede contener caracteres especiales"
-                    es_valido = False
-                i += 1
-        else:
-            error = f"\nError: El intento ingresado debe tener una longitud de {largo_palabra} letras"
+        caracter = intento[i]
+        if caracter.isspace():
+            error = "\nError: El intento iongresado no puede contener espacios"
             es_valido = False
+        elif caracter.isnumeric():
+            error = "\nError: El intento ingresado no puede contener numeros"
+            es_valido = False
+        elif not caracter.isalpha():
+            error = "\nError: El intento ingresado no puede contener caracteres especiales"
+            es_valido = False
+        i += 1  
     print(error)
     if es_valido == False:
         intento = input("Por favor ingrese nuevamente la palabra: ")
