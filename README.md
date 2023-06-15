@@ -7,7 +7,7 @@ Integrantes:
 - Llanos Pontaut Valentina
 - Marturet Valentin
 - Valle Valentin
-- Villalba Manoslavas Renato Samuel
+- Villalba Manosalvas Renato Samuel
 
 Repositorio de Github: https://github.com/ALGO1-TP-GRUPAL/Pasapalabra<br>
 Video explicativo del código: https://youtu.be/rZ4u7XjkLeE<br>
