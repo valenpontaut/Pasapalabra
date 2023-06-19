@@ -35,7 +35,7 @@ def total_de_palabras(diccionario_de_palabras):
     """
     parametros: 
         diccionario_de_palabras: diccionario proveniente de la funcion crear_diccionario().
-    Precondicion: Se debe proporcionar un diccionario generado por la funcion crear_diccionario()
+    Precondiciones: Se debe proporcionar un diccionario generado por la funcion crear_diccionario()
     Postcondiciones: Retorna un diccionario que tiene como clave todas las letras del abecedario y como valor la cantidad de palabras que hay en cada una.
     autores: Valle Valentin y Francisco Albinati 
     """
