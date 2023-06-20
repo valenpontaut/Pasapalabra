@@ -1,6 +1,25 @@
-from etapa1_etapa5 import iniciar_juego 
+from etapa1_etapa5 import iniciar_juego
 from etapa2 import crear_diccionario, total_de_palabras
 from etapa3 import crear_lista_letras, seleccionar_palabra
+
+def volver_a_jugar(confirmacion,puntaje_final,letras,diccionario_palabras,cant_por_letra):
+    """ 
+    Función: volver_a_jugar
+    Parámetros: 
+        confirmacion: es un string proveniente de un input en donde el usuario expresa deseo de jugar de nuevo o no
+        puntaje_anterior: es un integer que representa el puntaje acumulado de juegos anteriores
+        letras: es una lista con todas las letras del abecedario
+        diccionario_palabras: Es un diccionario tipo {"palabra1":"def palabra1", "palabra2":"def palabra2", ... }
+        cant_por_letra: Es una lista que tiene sublista con cada letra del abecedario y la cantidad de palabras que hay con esa letra en diccionario_palabras
+    Salidas: -
+    Precondiciones: Se debe haber jugado al menos una partida completa
+    Postcondiciones: si el jugador desea jugar otra partida, crea aleatoriamente un nuevo rosco e inicia un nuevo juego con el.
+    Autor: Valentina Llanos Pontaut
+    """
+    while confirmacion == "si":    
+        letras_participantes = crear_lista_letras(letras)
+        definiciones = seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra)
+        confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones,puntaje_final)
 
 def main():
     """ 
@@ -23,10 +42,7 @@ def main():
     definiciones = seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra)
     # 4. Armado del tablero y comienzo de la partida
     confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones)
-    while confirmacion == "si":
-        letras_participantes = crear_lista_letras(letras)
-        definiciones = seleccionar_palabra(diccionario_palabras, letras_participantes, cant_por_letra)
-        confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones,puntaje_final)
+    volver_a_jugar(confirmacion,puntaje_final,letras,diccionario_palabras,cant_por_letra)
     print("\n¡Gracias por participar!")
 
 main()

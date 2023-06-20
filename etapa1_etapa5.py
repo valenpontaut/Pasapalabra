@@ -138,6 +138,23 @@ def imprimir_puntuacion(aciertos,errores,puntaje_anterior=0,PUNTOS_POR_ACIERTO=1
     print(f"Puntaje final: {puntaje_final}")
     return puntaje_final
 
+def volver_a_jugar(confirmacion,puntaje_final):
+    """ 
+    Función: volver_a_jugar
+    Parámetros: 
+        confirmacion: es un string proveniente de un input en donde el usuario expresa deseo de jugar de nuevo o no
+        puntaje_anterior: es un integer que representa el puntaje acumulado de juegos anteriores.
+    Salidas: -
+    Precondiciones: Se debe haber jugado al menos una partida completa
+    Postcondiciones: si el jugador desea jugar otra partida, crea aleatoriamente un nuevo rosco e inicia un nuevo juego con el.
+    Autor: Valentina Llanos Pontaut
+    """
+    while confirmacion == "si":
+        # Las listas "letras_participantes" y "definiciones" se crean en la etapa 3 de manera aleatoria
+        letras_participantes = ["b","d","e","h","j","m","n","q","t","x"]
+        definiciones = [["barco","def barco"],["dinero","def dinero"],["estado","def estado"],["helado","def helado"],["jaula","def jaula"],["mono","def mono"],["nacer","def nacer"],["queso","def queso"],["tomate","def tomate"],["xilofon","def xilofon"]]
+        confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones,puntaje_final)
+
 def iniciar_juego(letras,definiciones,puntaje_anterior=0):
     """ 
     Función: iniciar_juego
@@ -184,7 +201,7 @@ def iniciar_juego(letras,definiciones,puntaje_anterior=0):
 def main():
     """ 
     Función: main
-    Parámetros: - 
+    Parámetros: -
     Salidas: -
     Precondiciones: Se debe correr el programa
     Postcondiciones: Es la funcion principal, por acá comienza a correr el código. Inicia el juego
@@ -195,9 +212,5 @@ def main():
     letras_participantes = ["a","c","d","g","i","l","m","p","s","v"] 
     definiciones = [["arbol","def arbol"],["casa","def casa"],["dado","def dado"],["gato","def gato"],["isla","def isla"],["loco","def loco"],["manteca","def manteca"],["pescado","def pescado"],["sapo","def sapo"],["vaso","def vaso"]]
     confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones)
-    while confirmacion == "si":
-        # Las listas "letras_participantes" y "definiciones" se crean en la etapa 3 de manera aleatoria
-        letras_participantes = ["b","d","e","h","j","m","n","q","t","x"]
-        definiciones = [["barco","def barco"],["dinero","def dinero"],["estado","def estado"],["helado","def helado"],["jaula","def jaula"],["mono","def mono"],["nacer","def nacer"],["queso","def queso"],["tomate","def tomate"],["xilofon","def xilofon"]]
-        confirmacion,puntaje_final = iniciar_juego(letras_participantes,definiciones,puntaje_final)
+    volver_a_jugar(confirmacion,puntaje_final)
     print("\n¡Gracias por participar!")
