@@ -223,6 +223,7 @@ def verificar_datos(root, registro_usuario, input_usuario, input_clave, input_co
                 usuario_valido = False
             i += 1
     else:
+        usuario_valido = False
         messagebox.showwarning('Error', 'El usuario debe tener una longitud mínima de 4 caracteres y máxima de 20')
 
     # Validación de clave
@@ -232,6 +233,7 @@ def verificar_datos(root, registro_usuario, input_usuario, input_clave, input_co
             messagebox.showwarning('Error', 'No coinciden las claves')
         i = 0
         while clave_valida == True and i < len(clave_1):
+            caracter = clave_1[i]
             if caracter.isupper():
                 mayusc += 1
             elif caracter.islower():
@@ -248,8 +250,8 @@ def verificar_datos(root, registro_usuario, input_usuario, input_clave, input_co
                 clave_valida = False
             i += 1
         if clave_valida and (mayusc == 0 or minusc == 0 or numeros == 0 or caracteres_especiales == 0):
-            messagebox.showwarning('Error', 'La clave debe contener al menos una letra mayúscula, una letra minúscula, un número, y alguno de los caracteres "#" o "!"')                      
             clave_valida = False
+            messagebox.showwarning('Error', 'La clave debe contener al menos una letra mayúscula, una letra minúscula, un número, y alguno de los caracteres "#" o "!"')                      
     else:
         clave_valida = False
         messagebox.showwarning('Error', 'La clave debe tener una longitud mínima de 6 caracteres y máxima de 12')
@@ -312,25 +314,25 @@ def validar_ingreso(root, input_usuario, input_clave, lista_jugadores):
     clave_ingresada = input_clave.get()
     usuario, clave = linea
     valido = False
-
-    while usuario and valido == False:
-        if usuario_ingresado == usuario and clave_ingresada == clave:
-            lista_jugadores.append(usuario)
-            messagebox.showinfo('Acceso', 'Usuario ingresado con éxito')
-            input_usuario.delete(0, END)
-            input_clave.delete(0, END)
-            if len(lista_jugadores) >= MAX_JUGADORES:
-                messagebox.showinfo('Aviso', 'Se han alcanzado el máximo de participantes posibles')
-                iniciar_juego(root, lista_jugadores)
-                valido = True
-            valido = True
-        linea = obtener_linea(archivo_usuarios)
-        usuario, clave = linea
-
+    
     if usuario_ingresado in lista_jugadores and not valido:
         messagebox.showwarning('Incorrecto', 'Usuario ya ingresado')
-    elif not valido:
-        messagebox.showwarning('Incorrecto', 'Usuario y/o clave inválida')
+    else:
+        while usuario and valido == False:
+            if usuario_ingresado == usuario and clave_ingresada == clave:
+                lista_jugadores.append(usuario)
+                messagebox.showinfo('Acceso', 'Usuario ingresado con éxito')
+                input_usuario.delete(0, END)
+                input_clave.delete(0, END)
+                if len(lista_jugadores) >= MAX_JUGADORES:
+                    messagebox.showinfo('Aviso', 'Se han alcanzado el máximo de participantes posibles')
+                    iniciar_juego(root, lista_jugadores)
+                    valido = True
+                valido = True
+            linea = obtener_linea(archivo_usuarios)
+            usuario, clave = linea
+        if not valido:
+            messagebox.showwarning('Incorrecto', 'Usuario y/o clave inválida')
 
 def iniciar_juego(root, lista_jugadores):
     """ 
