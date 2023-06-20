@@ -80,5 +80,17 @@ def etapa3_test():
             print(palabra[0] + ",", end="")
         print("")
 
+
+
+
+def test_unitario():
+    """
+    >>> filtrar_palabras(["arbol", "bosque", "barril", "casa", "camioneta", "comida", "perro", "raton", "rata", "zapato"], [["a", 1], ["b", 2], ["c", 3], ["p", 1], ["r", 2], ["z", 1]], ["a", "c", "r", "z"])
+    (['arbol', 'casa', 'camioneta', 'comida', 'raton', 'rata', 'zapato'], [['a', 1], ['c', 3], ['r', 2], ['z', 1]])
+    """
+    if __name__ == "__main__":
+        import doctest
+        print(doctest.testmod())
+# test_unitario()
 # Descomentar esta ejecucion para ver el codigo especifico pedido en la consigna de la etapa 3
 # etapa3_test()
