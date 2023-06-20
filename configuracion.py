@@ -55,4 +55,4 @@ def test():
     for clave in dicc_config:
         print(f"{clave}: {dicc_config[clave]}")
 
-test()
+# test()

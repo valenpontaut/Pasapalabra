@@ -121,7 +121,7 @@ def obtener_palabras_por_letra(lista_palabras_definicion):
             
     return palabras_por_letra
 
-obtener_lista_palabra_definicion("palabras.txt","definiciones.txt",LONG_PALABRA_MIN)
+#obtener_lista_palabra_definicion("palabras.txt","definiciones.txt",LONG_PALABRA_MIN)
 
 
 
