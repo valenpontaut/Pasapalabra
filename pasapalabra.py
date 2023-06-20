@@ -1,4 +1,5 @@
 import random
+import doctest
 from login import mensaje_de_inicio, crear_root, crear_frame
 from rosco import obtener_letras_particip, obtener_palabras_definiciones_particip
 from configuracion import obtener_config
@@ -349,5 +350,31 @@ def main():
         partidas_jugadas,puntaje_por_jugador_anterior = iniciar_juego(jugadores,lista_palabra_definicion,palabras_por_letra,PUNTOS_ACIERTO,PUNTOS_DESACIERTO,CANT_LETRAS,MAX_PARTIDAS)
         imprimir_reporte_final(partidas_jugadas,jugadores,puntaje_por_jugador_anterior,PUNTOS_ACIERTO,PUNTOS_DESACIERTO) 
         print("\n¡Gracias por participar!")
-    
 main()
+
+def test_unitario():
+    """
+    >>> validar_confirmacion('SI')
+    'si'
+    >>> validar_confirmacion('No')
+    'no'
+    >>> validar_confirmacion('sI')
+    'si'
+    >>> validar_confirmacion('no')
+    'no'
+
+    >>> validar_intento('TRAPO',5)
+    <BLANKLINE>
+    'trapo'
+    >>> validar_intento('flOREs',6)
+    <BLANKLINE>
+    'flores'
+    >>> validar_intento('sol',3)
+    <BLANKLINE>
+    'sol'
+    >>> validar_intento('SEMilla',7)
+    <BLANKLINE>
+    'semilla'
+    """
+    doctest.testmod()
+#test_unitario()

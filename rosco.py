@@ -42,3 +42,26 @@ def obtener_palabras_definiciones_particip(lista_palabra_definicion, letras_part
             palabras_definiciones_seleccionadas.append([lista_palabra_definicion[indice_random][PALABRA], lista_palabra_definicion[indice_random][DEFINICION]])
         indice += letra_cantidad[CANTIDAD]
     return palabras_definiciones_seleccionadas
+
+def test_obtener_letras_particip():
+    from configuracion import obtener_config
+    config = obtener_config()
+    CANT_LETRAS = config["CANTIDAD_LETRAS_ROSCO"]
+    letras_particip = obtener_letras_particip(CANT_LETRAS)
+    print(letras_particip)
+# test_obtener_letras_particip()
+
+def test_obtener_palabras_definiciones_particip():
+    from palabras_y_definiciones import obtener_lista_palabra_definicion, obtener_palabras_por_letra
+    from configuracion import obtener_config
+    config = obtener_config()
+    LONG_PALABRA_MIN = config["LONGITUD_PALABRA_MINIMA"]
+    CANT_LETRAS = config["CANTIDAD_LETRAS_ROSCO"]
+    ARCHIVO_PALABRAS = "palabras.txt"
+    ARCHIVO_DEFINICIONES = "definiciones.txt" 
+    lista_palabra_definicion = obtener_lista_palabra_definicion(ARCHIVO_PALABRAS, ARCHIVO_DEFINICIONES,LONG_PALABRA_MIN)
+    letras_participantes = obtener_letras_particip(CANT_LETRAS)
+    palabras_por_letra = obtener_palabras_por_letra(lista_palabra_definicion)
+    palabras_definiciones_seleccionadas = obtener_palabras_definiciones_particip(lista_palabra_definicion, letras_participantes, palabras_por_letra)
+    print(palabras_definiciones_seleccionadas)
+# test_obtener_palabras_definiciones_particip()

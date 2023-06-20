@@ -26,42 +26,16 @@ def quitar_acento(letra):
     parametros:
         letra: Caracter proveniente de la primer letra de una palabra.
     Salidas:
-        letra: Retorna siempre la letra ingresada pero en minuscula.
+        letra: Retorna siempre la letra ingresada pero sin acento.
     Precondiciones: El caracter letra tiene que ser valido y pertenecer a las primer letra de una palabra.
     Postcondiciones: si la letra tiene tilde se le quita y nos devuelve la letra modificada, de no ser asi nos devuelve la misma letra
     autores: Valle Valentin y Francisco Albinati 
-
-    Ejemplos:
-    >>> quitar_acento('á')
-    'a'
-    >>> quitar_acento('é')
-    'e'
-    >>> quitar_acento('í')
-    'i'
-    >>> quitar_acento('ó')
-    'o'
-    >>> quitar_acento('ú')
-    'u'
-    >>> quitar_acento('a')
-    'a'
-    >>> quitar_acento('e')
-    'e'
-    >>> quitar_acento('i')
-    'i'
-    >>> quitar_acento('o')
-    'o'
-    >>> quitar_acento('u')
-    'u'
     """
     DICCIONARIO_TILDES = {'á': 'a','é': 'e','í': 'i','ó': 'o','ú': 'u'}
     if letra in DICCIONARIO_TILDES:
         letra = DICCIONARIO_TILDES[letra]
 
-    return letra
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    return letra    
     
 def obtener_lista_palabra_definicion(ruta_palabras, ruta_definiciones,LONG_PALABRA_MIN):
     """
@@ -120,6 +94,33 @@ def obtener_palabras_por_letra(lista_palabras_definicion):
     palabras_por_letra = sorted(diccionario_cantidad_por_letra.items(), key = lambda x:x[0])
             
     return palabras_por_letra
+
+def test_unitario():
+    import doctest
+    """
+    >>> quitar_acento('á')
+    'a'
+    >>> quitar_acento('é')
+    'e'
+    >>> quitar_acento('í')
+    'i'
+    >>> quitar_acento('ó')
+    'o'
+    >>> quitar_acento('ú')
+    'u'
+    >>> quitar_acento('a')
+    'a'
+    >>> quitar_acento('e')
+    'e'
+    >>> quitar_acento('i')
+    'i'
+    >>> quitar_acento('o')
+    'o'
+    >>> quitar_acento('u')
+    'u'
+    """
+    doctest.testmod()
+# test_unitario()
 
 #obtener_lista_palabra_definicion("palabras.txt","definiciones.txt",LONG_PALABRA_MIN)
 
