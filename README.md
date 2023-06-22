@@ -10,5 +10,5 @@ Integrantes:
 - Villalba Manosalvas Renato Samuel
 
 Repositorio de Github: https://github.com/ALGO1-TP-GRUPAL/Pasapalabra<br>
-Video explicativo del código: https://youtu.be/rZ4u7XjkLeE<br>
-Video demostrativo del funcionamiento del código: https://youtu.be/UTL3sAZE_w4
+Video explicativo del código: https://www.youtube.com/watch?v=nYp17USfTxY<br>
+Video demostrativo del juego: https://www.youtube.com/watch?v=Jox2iYskmwQ
